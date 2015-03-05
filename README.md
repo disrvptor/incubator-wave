@@ -1,3 +1,18 @@
+[20150304] This is an unofficial fork of the Apache Wave (WaveInABox)
+project. It looks like the work on the Apache incubated project has
+grown stagnant, which is quite disappointing. Here are my plans for this
+codebase.
+1. Remove the history - currently the history is something like 130MB on
+a codebase of ~28MB
+2. Port the build system to Maven, which is much more sane than the
+current Ant system and lowers the barrier of entry for contributors
+3. Split up the code - currently the code is a mixture of server,
+client, API and extensions.
+4. Rewrite the frontend - move away from the GWT frontend into something
+that is supportable and leverages modern browsers
+5. ???
+6. Profit!
+
 Apache Wave
 ------------
 The Apache Wave project is a stand alone wave server and rich web client
