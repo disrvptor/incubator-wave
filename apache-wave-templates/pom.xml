@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+						http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.apache.wave</groupId>
+	<artifactId>apache-wave-templates</artifactId>
+	<name>Apache Wave: Protobug String Templates</name>
+
+	<parent>
+		<groupId>org.apache.wave</groupId>
+		<artifactId>apache-wave-parent</artifactId>
+		<version>0.4-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<properties>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<configuration>
+					<executable>java</executable>
+					<arguments>
+						<argument>-classpath</argument>
+						<classpath/>
+						<argument>org.waveprotocol.pst.PstMain</argument>
+						<argument>-s</argument>
+						<argument>pst</argument>
+						<argument>-f</argument>
+						<argument>../apache-waveprotobuf/target/classes/org/waveprotocol/box/search/SearchProto.class</argument>
+						<argument>src/main/resources/org/waveprotocol/pst/templates/api/api.st</argument>
+						<argument>src/main/resources/org/waveprotocol/pst/templates/builder/builder.st</argument>
+						<argument>src/main/resources/org/waveprotocol/pst/templates/pojo/pojo.st</argument>
+						<argument>src/main/resources/org/waveprotocol/pst/templates/jso/jso.st</argument>
+						<argument>src/main/resources/org/waveprotocol/pst/templates/util/util.st</argument>
+						<argument>src/main/resources/org/waveprotocol/pst/templates/gson/gson.st</argument>
+						<argument>src/main/resources/org/waveprotocol/pst/templates/proto/proto.st</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.wave</groupId>
+			<artifactId>apache-pst-util</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>
