@@ -12,7 +12,7 @@
 	<parent>
 		<groupId>org.apache.wave</groupId>
 		<artifactId>apache-wave-parent</artifactId>
-		<version>0.4-SNAPSHOT</version>
+		<version>0.4.0-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 
@@ -20,40 +20,89 @@
 	</properties>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.3.2</version>
-				<configuration>
-					<executable>java</executable>
-					<arguments>
-						<argument>-classpath</argument>
-						<classpath/>
-						<argument>org.waveprotocol.pst.PstMain</argument>
-						<argument>-s</argument>
-						<argument>pst</argument>
-						<argument>-f</argument>
-						<argument>../apache-waveprotobuf/target/classes/org/waveprotocol/box/search/SearchProto.class</argument>
-						<argument>src/main/resources/org/waveprotocol/pst/templates/api/api.st</argument>
-						<argument>src/main/resources/org/waveprotocol/pst/templates/builder/builder.st</argument>
-						<argument>src/main/resources/org/waveprotocol/pst/templates/pojo/pojo.st</argument>
-						<argument>src/main/resources/org/waveprotocol/pst/templates/jso/jso.st</argument>
-						<argument>src/main/resources/org/waveprotocol/pst/templates/util/util.st</argument>
-						<argument>src/main/resources/org/waveprotocol/pst/templates/gson/gson.st</argument>
-						<argument>src/main/resources/org/waveprotocol/pst/templates/proto/proto.st</argument>
-					</arguments>
-				</configuration>
-			</plugin>
-		</plugins>
+		<sourceDirectory>${basedir}/src/main/java-gen</sourceDirectory>
 	</build>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.wave</groupId>
-			<artifactId>apache-pst-util</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-	</dependencies>
+	<profiles>
+		<profile>
+			<id>compile</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>com.google.protobuf</groupId>
+					<artifactId>protobuf-java</artifactId>
+					<version>${protobuf-java.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.wave</groupId>
+					<artifactId>apache-wave-protobuf</artifactId>
+					<version>${project.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.wave</groupId>
+					<artifactId>apache-wave-api</artifactId>
+					<version>${project.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.wave</groupId>
+					<artifactId>apache-wave-common</artifactId>
+					<version>${project.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>com.google.code.gson</groupId>
+					<artifactId>gson</artifactId>
+					<version>2.2.4</version>
+				</dependency>
+				<dependency>
+					<groupId>com.google.gwt</groupId>
+					<artifactId>gwt-user</artifactId>
+					<version>2.6.1</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>generate</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.3.2</version>
+						<configuration>
+							<executable>java</executable>
+							<arguments>
+								<argument>-classpath</argument>
+								<classpath/>
+								<argument>org.waveprotocol.pst.PstMain</argument>
+								<argument>-s</argument>
+								<argument>pst</argument>
+								<argument>-d</argument>
+								<argument>${pst_dst}</argument>
+								<argument>-f</argument>
+								<argument>${pst_source_class}</argument>
+								<argument>src/main/resources/org/waveprotocol/pst/templates/api/api.st</argument>
+								<argument>src/main/resources/org/waveprotocol/pst/templates/builder/builder.st</argument>
+								<argument>src/main/resources/org/waveprotocol/pst/templates/pojo/pojo.st</argument>
+								<argument>src/main/resources/org/waveprotocol/pst/templates/jso/jso.st</argument>
+								<argument>src/main/resources/org/waveprotocol/pst/templates/util/util.st</argument>
+								<argument>src/main/resources/org/waveprotocol/pst/templates/gson/gson.st</argument>
+								<argument>src/main/resources/org/waveprotocol/pst/templates/proto/proto.st</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+			<dependencies>
+				<dependency>
+					<groupId>org.apache.wave</groupId>
+					<artifactId>apache-pst-util</artifactId>
+					<version>${project.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 
 </project>

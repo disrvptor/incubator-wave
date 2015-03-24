@@ -1,7 +1,10 @@
+Warning: this may not be what you are looking for
+---------------------------------------------------
 [20150304] This is an unofficial fork of the Apache Wave (WaveInABox)
 project. It looks like the work on the Apache incubated project has
 grown stagnant, which is quite disappointing. Here are my plans for this
 codebase.
+
 1. Remove the history - currently the history is something like 130MB on
 a codebase of ~28MB
 2. Port the build system to Maven, which is much more sane than the

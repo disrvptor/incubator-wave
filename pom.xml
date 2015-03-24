@@ -8,7 +8,7 @@
 	<groupId>org.apache.wave</groupId>
 	<artifactId>apache-wave-parent</artifactId>
 	<name>Apache Wave: Parent</name>
-	<version>0.4-SNAPSHOT</version>
+	<version>0.4.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<dependencyManagement>
@@ -19,8 +19,10 @@
 		<module>apache-wave-gxp</module>
 		<module>apache-pst-util</module>
 		<module>apache-wave-templates</module>
-		<!--module>wave-api</module>
-		<module>apache-wave-server</module-->
+		<module>apache-wave-server</module>
+		<module>apache-wave-api</module>
+		<module>apache-wave-gwtclient</module>
+		<module>apache-wave-common</module>
 	</modules>
 
 	<properties>

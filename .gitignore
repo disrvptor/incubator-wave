@@ -32,3 +32,8 @@ war/WEB-INF
 .DS_Store
 **/target
 
+# Eclipse files
+**/.classpath
+**/.project
+**/.settings
+
